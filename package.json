@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "prop-types": "^15.5.8",
+    "random-words": "^0.0.1",
     "react": "^15.5.3",
     "react-dom": "^15.5.3"
   },
