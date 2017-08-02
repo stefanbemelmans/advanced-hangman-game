@@ -1,18 +1,18 @@
 {
-  "name": "advanced-hangman-game",
-  "homepage": "https://<github-username>.github.io/advanced-hangman-game",
+  "name": "advanced-homework-2",
+  "homepage": "https://<github-username>.github.io/advanced-homework-2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "random-words": "^0.0.1",
+    "prop-types": "^15.5.8",
     "react": "^15.5.3",
     "react-dom": "^15.5.3"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.2",
-    "eslint": "^3.19.0",
-    "eslint-plugin-babel": "^4.1.1",
-    "eslint-plugin-react": "^6.10.3",
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.14.0",
+    "eslint-plugin-babel": "^4.0.1",
+    "eslint-plugin-react": "^6.9.0",
     "gh-pages": "^0.12.0",
     "react-scripts": "0.9.5"
   },
