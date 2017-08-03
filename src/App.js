@@ -4,35 +4,71 @@ import './App.css';
 import state from "./state";
 import Random from "random-words";
 class App extends Component {
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		this.state = {
-			wordToGuess: Random(),
+			wordToGuess: "",
 			strikes:0,
 			guess:"",
-			correctGuesses: [] 
+			correctGuesses:  [],
+			bad: []
 		};
+		this.handleChange = this.handleChange.bind(this);
+		this.guess = this.guess.bind(this);
 	}
-	
-	setLength(length){
-	this.setState({
-				correctGuesses:  Array(length).fill('_')
+
+
+	componentDidMount() {
+		const randomWord = Random();
+
+		let length = Array(randomWord.length).fill('_');
+		this.setState({
+				wordToGuess: randomWord,
+				correctGuesses: length
 			})
+		console.log(this.state);
+
 	}
-	
-		
-	
-	
+
+	handleChange(e)  {
+			if(e.target.value.length > 1){
+				alert("One Letter Only")
+			}else{
+			this.setState({
+				guess: e.target.value
+			})
+		}
+	}
+
+	guess(){
+		let letIdx;
+		let guess = this.state.guess;
+		let charArray = this.state.wordToGuess.split('');
+		let corrCopy = this.state.correctGuesses.slice();
+
+		if(charArray.includes(guess)){
+			letIdx = charArray.indexOf(guess);
+			corrCopy[letIdx] = guess;
+			this.setState({
+				correctGuesses: corrCopy
+			})
+			document.getElementById('input').value ="";
+			console.log(this.state.correctGuesses);
+		}
+		else{
+
+		}
+
+	}
 	render() {
 
-		this.setLength(this.state.wordToGuess);
 		console.log(this.state.wordToGuess);
 		console.log(this.state.correctGuesses);
-		
+
 
 		let className = `strike-${this.state.strikes}`;
 		let spans = [<span>_</span>];
-		
+
 		return (
 			<div>
 				<div  className="hangman-sprites">
@@ -40,8 +76,8 @@ class App extends Component {
 				</div>
 				<div id="inputs">
 					<div>{spans}</div>
-					<input />
-					<button>Guess</button>
+					<input id="input" onChange={this.handleChange} />
+					<button onClick={this.guess}>Guess</button>
 				</div>
 			</div>
     );
