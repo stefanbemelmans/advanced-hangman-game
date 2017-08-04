@@ -45,18 +45,26 @@ class App extends Component {
 		let guess = this.state.guess;
 		let charArray = this.state.wordToGuess.split('');
 		let corrCopy = this.state.correctGuesses.slice();
-
+		if(this.state.bad.includes(guess)){
+			alert("You've guessed that already");
+		}
+		document.getElementById('input').value='';
 		if(charArray.includes(guess)){
 			letIdx = charArray.indexOf(guess);
 			corrCopy[letIdx] = guess;
 			this.setState({
-				correctGuesses: corrCopy
+				correctGuesses: corrCopy,
+				guess: ''
 			})
 			document.getElementById('input').value ="";
 			console.log(this.state.correctGuesses);
 		}
 		else{
-
+			this.setState({
+				bad: this.state.bad.push(guess),
+				strikes: this.state.strikes +=1,
+				guess: ""
+			})
 		}
 
 	}
