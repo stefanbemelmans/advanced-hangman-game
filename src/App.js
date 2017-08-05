@@ -13,6 +13,9 @@ class App extends Component {
 			correctGuesses:  [],
 			bad: []
 		};
+
+		this.bad = this.state.bad;
+		this.strikes = this.state.strikes;
 		this.handleChange = this.handleChange.bind(this);
 		this.guess = this.guess.bind(this);
 	}
@@ -45,10 +48,13 @@ class App extends Component {
 		let guess = this.state.guess;
 		let charArray = this.state.wordToGuess.split('');
 		let corrCopy = this.state.correctGuesses.slice();
+		// let strikes = this.state.strikes;
+		// let bad = this.state.bad.slice();
 		if(this.state.bad.includes(guess)){
 			alert("You've guessed that already");
 		}
 		document.getElementById('input').value='';
+		
 		if(charArray.includes(guess)){
 			letIdx = charArray.indexOf(guess);
 			corrCopy[letIdx] = guess;
@@ -60,9 +66,11 @@ class App extends Component {
 			console.log(this.state.correctGuesses);
 		}
 		else{
+			this.strikes += 1;
+			this.bad.push(guess);
 			this.setState({
-				bad: this.state.bad.push(guess),
-				strikes: this.state.strikes +=1,
+				bad: this.bad,
+				strikes: this.strikes,
 				guess: ""
 			})
 		}
