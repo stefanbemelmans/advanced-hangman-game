@@ -8,12 +8,12 @@ body {
   position: relative;
   height: 200px;
   width: 110px;
-  margin: auto; 
+  margin: auto;
 }
 #inputs {
   position: absolute;
-  margin: auto; 
-  left:50%;
+  margin: auto;
+  left: 50%;
 }
 .hangman-sprites div {
     background: url("/images/hangman-sprite.png") no-repeat 0 0;
@@ -23,7 +23,7 @@ body {
     top: 0;
     left: 0;
     opacity: 0;
-    transition: opacity 1s; 
+    transition: opacity 1s;
 }
 .hangman-sprites .current {
   opacity: 1; }
@@ -47,22 +47,20 @@ body {
   .words {
     height: 2rem;
     width: 32rem;
-    
     color: blue;
     font-size: 2rem;
     font-family: 'Times New Roman', Times, serif;
-     margin-left: 7rem; 
+    margin-left: 7rem;
     display: flex;
-    
+    justify-content: center;
+
 
   }
 .corGuess {
-
-  position: absolute;
-  left: 25%;
   display: flex;
   flex: 1;
 }
+
 
   .guessed {
     display: inline-block;

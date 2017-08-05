@@ -74,7 +74,7 @@ class App extends Component {
 		let corrCopy = this.state.correctGuesses.slice();
 		// let strikes = this.state.strikes;
 		// let bad = this.state.bad.slice();
-		let dupes = this.state.wordToGuess.match([a-z]+)(?=\1);//this is the dupefinder returns letter if it's more than 1
+		let dupes = this.state.wordToGuess.match(/(.+)(?=\1)/g);//this is the dupefinder returns letter if it's more than 1
 		if(this.state.bad.includes(guess)){
 			alert("You've guessed that already");
 		}
@@ -87,10 +87,7 @@ class App extends Component {
 				correctGuesses: corrCopy,
 				guess: ''
 			})
-			if(this.checkWin()){
-				alert('You Win!');
-				this.reset();
-			}
+
 			console.log(this.state.correctGuesses);
 		}
 		else{
@@ -110,7 +107,10 @@ class App extends Component {
 		console.log(this.state.wordToGuess);
 		console.log(this.state.correctGuesses.join('-'));
 		console.log(this.state.correctGuesses);
-
+		if(this.checkWin()){
+			alert('You Win!');
+			this.reset();
+		}
 
 		let className = `strike-${this.state.strikes}`;
 		let spans = [<span>_</span>];
@@ -127,7 +127,7 @@ class App extends Component {
 				</div>
 				<div className="words">
 					<div className="corGuess">{this.state.correctGuesses.join('-')}</div>
-					<div id="inputs">
+					<div>
 						<input id="input" onChange={this.handleChange} />
 						<button onClick={this.guess}>Guess</button>
 					</div>
