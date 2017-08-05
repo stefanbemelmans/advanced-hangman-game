@@ -43,3 +43,35 @@ body {
   background-position: -385px -190px; }
 .hangman-sprites .gamewon {
   background-position: -262px -188px; }
+
+  .words {
+    height: 2rem;
+    width: 32rem;
+    
+    color: blue;
+    font-size: 2rem;
+    font-family: 'Times New Roman', Times, serif;
+     margin-left: 7rem; 
+    display: flex;
+    
+
+  }
+.corGuess {
+
+  position: absolute;
+  left: 25%;
+  display: flex;
+  flex: 1;
+}
+
+  .guessed {
+    display: inline-block;
+    flex: 1;
+    background: black;
+    color: white;
+    font-size: 1.5rem;
+    position: absolute;
+    width: auto;
+    margin-top: 60px;
+    margin-left: 128px;
+  }
