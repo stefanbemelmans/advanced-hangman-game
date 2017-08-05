@@ -16,7 +16,7 @@ class App extends Component {
 		};
 //I guess this is like local variables...or global in the scope of the component?
 // I just sort of did it this way to do it.
-
+		this.dupes = this.state.dupes;
 		this.bad = this.state.bad;
 		this.strikes = this.state.strikes;
 		this.handleChange = this.handleChange.bind(this);
@@ -30,9 +30,9 @@ class App extends Component {
 
 		let length = Array(randomWord.length).fill('_');
 		this.setState({
-				wordToGuess: randomWord,
-				correctGuesses: length
-
+				wordToGuess: "hello",
+				correctGuesses: length,
+				dupes: this.state.wordToGuess.match(/(.+)(?=\1)/g)//this is the dupefinder returns letter if it's more than 1
 			})
 		console.log(this.state);
 
@@ -74,7 +74,7 @@ class App extends Component {
 		let corrCopy = this.state.correctGuesses.slice();
 		// let strikes = this.state.strikes;
 		// let bad = this.state.bad.slice();
-		let dupes = this.state.wordToGuess.match(/(.+)(?=\1)/g);//this is the dupefinder returns letter if it's more than 1
+		
 		if(this.state.bad.includes(guess)){
 			alert("You've guessed that already");
 		}
