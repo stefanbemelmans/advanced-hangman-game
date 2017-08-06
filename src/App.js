@@ -35,7 +35,7 @@ class App extends Component {
 				correctGuesses: length,
 				//dupes: this.state.wordToGuess.match(/(.+)(?=\1)/g)this is the dupefinder returns letter if it's more than 1
 			})
-		
+
 		console.log(this.state);
 
 
@@ -52,11 +52,11 @@ class App extends Component {
 		}
 	}
 
-// checkWin() {
-// 	if(!this.state.correctGuesses.includes('_')){
-// 		return true;
-// 	}
-// }
+checkWin() {
+	if(this.state.wordToGuess.join('').length === 0){
+		return true;
+	}
+}
 
 
 // 	reset(){
@@ -100,24 +100,25 @@ class App extends Component {
 		else{
 			this.strikes += 1;
 			if(this.strikes === 6){alert("You Lose!")};
-			this.bad.push(this.guess);
+			bad.push(guess);
 			this.setState({
-				bad: this.bad,
-				strikes: this.strikes,
+				bad: bad,
+				strikes: strikes,
 				guess: ""
 			})
 		}
 
 	}
 	render() {
-
+		let resbtn = checkWin() ? 'reset': 'guess';
 		console.log(this.state.wordToGuess);
 		console.log(this.state.correctGuesses);
 		console.log(this.charArray);
-		// if(this.checkWin()){
-		// 	alert('You Win!');
-		// 	// this.reset();
-		// }
+		if(this.checkWin()){
+			document.
+			alert('You Win!');
+			// this.reset();
+		}
 
 		let className = `strike-${this.state.strikes}`;
 		let spans = [<span>_</span>];
@@ -136,7 +137,7 @@ class App extends Component {
 					<div className="corGuess">{this.state.correctGuesses.join('-')}</div>
 					<div>
 						<input id="input" onChange={this.handleChange} />
-						<button onClick={this.guess}>Guess</button>
+						<button onClick={`this.${resbtn}`}>Guess</button>
 					</div>
 					<div className="guessed">{guessed}</div>
 				</div>
