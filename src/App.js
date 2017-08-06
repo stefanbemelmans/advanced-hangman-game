@@ -104,7 +104,6 @@ checkWin() {
 		}
 		else{
 			strikes += 1;
-			if(this.strikes === 6){alert("You Lose!")};
 			bad.push(guess);
 			this.setState({
 				bad: bad,
@@ -115,7 +114,14 @@ checkWin() {
 
 	}
 	render() {
+		let spans = [<span>_</span>];
+		let guessed;
 		let className;
+		if(this.state.bad){
+		 guessed = this.state.bad.join('-');
+		}else{
+		 guessed = null;
+		}
 		console.log(this.wordAr);
 		console.log(this.state.correctGuesses);
 		console.log();
@@ -125,19 +131,15 @@ checkWin() {
 		if(this.state.checkForWin){
 			if(this.checkWin()){
 				className ="gamewon";
+				guessed = "You Win!";
 			}
-			else if (this.state.strikes > 5) {
+			else if (this.state.strikes === 5) {
 				className ="gameover"
+				guessed ="You Lose!";
 			}
 		};
 
-		let spans = [<span>_</span>];
-		let guessed;
-		if(this.state.bad){
-		 guessed = this.state.bad.join('-');
-		}else{
-		 guessed = null;
-		}
+
 		return (
 			<div>
 				<div  className="hangman-sprites">
