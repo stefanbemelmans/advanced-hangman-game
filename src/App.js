@@ -15,7 +15,7 @@ class App extends Component {
 			checkForWin: false
 		};
 //I guess this is like local variables...or global in the scope of the component?
-// I just sort of did it this way to do it.
+// I just sort of did it this way to do it, I read somewhere to always try and keep your vars local, I see why.
 		this.wordAr = this.state.wordToGuess.slice();
 		// this.dupes = this.state.dupes;
 		// this.bad = this.state.bad;
@@ -71,6 +71,7 @@ checkWin() {
 // 	console.log(this.state);
 // }
 
+//I think there's a shorter way to write this.
 	guess(){
 		let letIdx;
 		let guess = this.state.guess;
@@ -104,7 +105,7 @@ checkWin() {
 		}
 		else{
 			strikes += 1;
-			if(this.strikes === 6){alert("You Lose!")};
+			if(strikes === 6){
 			bad.push(guess);
 			this.setState({
 				bad: bad,
@@ -113,7 +114,7 @@ checkWin() {
 			})
 		}
 
-	}
+	};
 	render() {
 		let className;
 		console.log(this.wordAr);
@@ -124,10 +125,10 @@ checkWin() {
 
 		if(this.state.checkForWin){
 			if(this.checkWin()){
-				className ="gamewon";
+				className =`gamewon`;
 			}
 			else if (this.state.strikes > 5) {
-				className ="gameover"
+				className = `gameover`
 			}
 		};
 
