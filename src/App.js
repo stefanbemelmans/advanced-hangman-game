@@ -14,15 +14,9 @@ class App extends Component {
 			bad: [],
 			checkForWin: false
 		};
-//I guess this is like local variables...or global in the scope of the component?
-// I just sort of did it this way to do it.
-		this.wordAr = this.state.wordToGuess.slice();
-		// this.dupes = this.state.dupes;
-		// this.bad = this.state.bad;
-		// this.strikes = this.state.strikes;
-		this.handleChange = this.handleChange.bind(this);
 		this.guess = this.guess.bind(this);
-		// this.checkWin = this.checkWin.bind(this);
+		this.reset = this.reset.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
 
@@ -31,8 +25,9 @@ class App extends Component {
 		let length = Array(randomWord.length).fill('_');
 		this.setState({
 				wordToGuess: randomWord.split(''),
-				correctGuesses: length,
+				correctGuesses: length
 			})
+
 
 		console.log(this.state);
 
@@ -40,15 +35,15 @@ class App extends Component {
 
 	}
 //need to work out how to limit text input... "max-length"?
-	handleChange(e)  {
-			if(e.target.value.length > 1){
-				alert("One Letter Only")
-			}else{
+handleChange(e)  {
+		if(e.target.value.length > 1){
+			alert("One Letter Only")
+		}else{
 			this.setState({
-				guess: e.target.value
-			})
-		}
+			guess: e.target.value
+		})
 	}
+}
 
 checkWin() {
 
@@ -59,17 +54,19 @@ checkWin() {
 }
 
 
-// 	reset(){
-// 	const randomWord = Random();
-// 	let newBad = [];
-// 	let length = Array(randomWord.length).fill('_');
-// 	this.setState({
-// 			wordToGuess: randomWord,
-// 			correctGuesses: length,
-// 			bad: newBad
-// 		})
-// 	console.log(this.state);
-// }
+reset(){
+	const randomWord = Random();
+	let newBad = [];
+	let length = Array(randomWord.length).fill('_');
+	this.setState({
+			wordToGuess: randomWord.split(''),
+			correctGuesses: length,
+			bad: newBad,
+			strikes: 0
+
+		})
+	console.log(this.state);
+}
 
 	guess(){
 		let letIdx;
@@ -117,7 +114,7 @@ checkWin() {
 		let spans = [<span>_</span>];
 		let guessed;
 		let className;
-		if(this.state.bad){
+		if(this.state.bad.length > 0){
 		 guessed = this.state.bad.join('-');
 		}else{
 		 guessed = null;
@@ -131,11 +128,12 @@ checkWin() {
 		if(this.state.checkForWin){
 			if(this.checkWin()){
 				className ="gamewon";
-				guessed = "You Win!";
+				guessed = "You Win! click to reset";
 			}
 			else if (this.state.strikes === 5) {
-				className ="gameover"
-				guessed ="You Lose!";
+				className ="gameover";
+				guessed ="You Lose! click to reset";
+
 			}
 		};
 
@@ -151,7 +149,7 @@ checkWin() {
 						<input id="input" onChange={this.handleChange} />
 						<button onClick={this.guess}>Guess</button>
 					</div>
-					<div className="guessed">{guessed}</div>
+					<div className="guessed" onClick={this.reset}>{guessed}</div>
 				</div>
 
 
