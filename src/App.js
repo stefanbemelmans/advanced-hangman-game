@@ -7,16 +7,16 @@ class App extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			wordToGuess: "",
+			wordToGuess: [],
 			strikes:0,
 			guess:"",
 			correctGuesses:  [],
 			bad: [],
-			dupes: ""
+			checkForWin: false
 		};
 //I guess this is like local variables...or global in the scope of the component?
 // I just sort of did it this way to do it.
-		// this.wordAr = this.state.wordToGuess.split('');
+		this.wordAr = this.state.wordToGuess.slice();
 		// this.dupes = this.state.dupes;
 		// this.bad = this.state.bad;
 		// this.strikes = this.state.strikes;
@@ -32,7 +32,6 @@ class App extends Component {
 		this.setState({
 				wordToGuess: randomWord.split(''),
 				correctGuesses: length,
-				//dupes: this.state.wordToGuess.match(/(.+)(?=\1)/g)this is the dupefinder returns letter if it's more than 1
 			})
 
 		console.log(this.state);
@@ -51,13 +50,13 @@ class App extends Component {
 		}
 	}
 
-// checkWin() {
-// 		let anyLeft = this.state.wordToGuess.slice();
+checkWin() {
 
-// 	if( anyLeft.join('').length === 0){
-// 		return true;
-// 	}
-// }
+	if(this.state.wordToGuess.join('').length === 0){
+
+		return true;
+	}
+}
 
 
 // 	reset(){
@@ -92,14 +91,19 @@ class App extends Component {
 			this.setState({
 				correctGuesses: guessCopy,
 				guess: '',
-				wordToGuess: charArray
+				wordToGuess: charArray,
+				checkForWin: true
 			})
+			if(this.state.checkForWin){
+				this.checkWin();
+			}
+
 			console.log(charArray);
 			console.log(this.state.correctGuesses);
 			console.log(this.state.wordToGuess.join(''));
 		}
 		else{
-			this.strikes += 1;
+			strikes += 1;
 			if(this.strikes === 6){alert("You Lose!")};
 			bad.push(guess);
 			this.setState({
@@ -111,17 +115,22 @@ class App extends Component {
 
 	}
 	render() {
-		
-		console.log(this.state.wordToGuess.join(''));
+		let className;
+		console.log(this.wordAr);
 		console.log(this.state.correctGuesses);
-		console.log(this.charArray);
-		// if(this.checkWin()){
-		// 	document.
-		// 	alert('You Win!');
-		// 	// this.reset();
-		// }
+		console.log();
 
-		let className = `strike-${this.state.strikes}`;
+		className = `strike-${this.state.strikes}`
+
+		if(this.state.checkForWin){
+			if(this.checkWin()){
+				className ="gamewon";
+			}
+			else if (this.state.strikes > 5) {
+				className ="gameover"
+			}
+		};
+
 		let spans = [<span>_</span>];
 		let guessed;
 		if(this.state.bad){
