@@ -14,16 +14,6 @@ class App extends Component {
 			bad: [],
 			checkForWin: false
 		};
-<<<<<<< HEAD
-//I guess this is like local variables...or global in the scope of the component?
-// I just sort of did it this way to do it, I read somewhere to always try and keep your vars local, I see why.
-		this.wordAr = this.state.wordToGuess.slice();
-		// this.dupes = this.state.dupes;
-		// this.bad = this.state.bad;
-		// this.strikes = this.state.strikes;
-		this.handleChange = this.handleChange.bind(this);
-=======
->>>>>>> origin/master
 		this.guess = this.guess.bind(this);
 		this.reset = this.reset.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -46,8 +36,14 @@ class App extends Component {
 	}
 //need to work out how to limit text input... "max-length"?
 handleChange(e)  {
+	let inputAr;
 		if(e.target.value.length > 1){
+			inputAr = e.target.value.split('');
 			alert("One Letter Only")
+			e.target.value = inputAr[0];
+			this.setState({
+				guess: inputAr[0]
+			})
 		}else{
 			this.setState({
 			guess: e.target.value
