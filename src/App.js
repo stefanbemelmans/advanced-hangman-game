@@ -27,11 +27,10 @@ class App extends Component {
 
 
 	componentDidMount() {
-		const randomWord = 'hello';
-
-		let length = Array("hello".length).fill('_');
+		const randomWord = Random();
+		let length = Array(randomWord.length).fill('_');
 		this.setState({
-				wordToGuess: "hello".split(''),
+				wordToGuess: randomWord.split(''),
 				correctGuesses: length,
 				//dupes: this.state.wordToGuess.match(/(.+)(?=\1)/g)this is the dupefinder returns letter if it's more than 1
 			})
@@ -52,11 +51,13 @@ class App extends Component {
 		}
 	}
 
-checkWin() {
-	if(this.state.wordToGuess.join('').length === 0){
-		return true;
-	}
-}
+// checkWin() {
+// 		let anyLeft = this.state.wordToGuess.slice();
+
+// 	if( anyLeft.join('').length === 0){
+// 		return true;
+// 	}
+// }
 
 
 // 	reset(){
@@ -95,7 +96,7 @@ checkWin() {
 			})
 			console.log(charArray);
 			console.log(this.state.correctGuesses);
-			console.log(this.state.wordToGuess);
+			console.log(this.state.wordToGuess.join(''));
 		}
 		else{
 			this.strikes += 1;
@@ -110,15 +111,15 @@ checkWin() {
 
 	}
 	render() {
-		let resbtn = checkWin() ? 'reset': 'guess';
-		console.log(this.state.wordToGuess);
+		
+		console.log(this.state.wordToGuess.join(''));
 		console.log(this.state.correctGuesses);
 		console.log(this.charArray);
-		if(this.checkWin()){
-			document.
-			alert('You Win!');
-			// this.reset();
-		}
+		// if(this.checkWin()){
+		// 	document.
+		// 	alert('You Win!');
+		// 	// this.reset();
+		// }
 
 		let className = `strike-${this.state.strikes}`;
 		let spans = [<span>_</span>];
@@ -137,7 +138,7 @@ checkWin() {
 					<div className="corGuess">{this.state.correctGuesses.join('-')}</div>
 					<div>
 						<input id="input" onChange={this.handleChange} />
-						<button onClick={`this.${resbtn}`}>Guess</button>
+						<button onClick={this.guess}>Guess</button>
 					</div>
 					<div className="guessed">{guessed}</div>
 				</div>
