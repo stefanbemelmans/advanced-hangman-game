@@ -19,7 +19,7 @@ class App extends Component {
 		this.handleChange = this.handleChange.bind(this);
 	}
 
-
+//A great learning moment regarding component life-cycle, I was previously a little confused about componentDidMount, but it's just init and then set. The willMount and didMount are still a mystery tho.
 	componentDidMount() {
 		const randomWord = Random();
 		let length = Array(randomWord.length).fill('_');
@@ -34,7 +34,7 @@ class App extends Component {
 
 
 	}
-//need to work out how to limit text input... "max-length"?
+//you can type more than one letter but I'll only except the first one.
 handleChange(e)  {
 	let inputAr;
 		if(e.target.value.length > 1){
@@ -75,7 +75,7 @@ reset(){
 }
 
 //I think there's a shorter way to write this.
-	guess(){
+guess(){
 		let letIdx;
 		let guess = this.state.guess;
 		let charArray = this.state.wordToGuess;
@@ -85,7 +85,7 @@ reset(){
 
 		if(this.state.bad.includes(this.guess)){
 			alert("You've guessed that already");
-		}
+			}
 		document.getElementById('input').value='';
 
 		if(charArray.includes(guess)){
@@ -101,10 +101,6 @@ reset(){
 			if(this.state.checkForWin){
 				this.checkWin();
 			}
-
-			console.log(charArray);
-			console.log(this.state.correctGuesses);
-			console.log(this.state.wordToGuess.join(''));
 		}
 		else{
 			strikes += 1;
@@ -126,10 +122,7 @@ reset(){
 		}else{
 		 guessed = null;
 		}
-		console.log(this.wordAr);
-		console.log(this.state.correctGuesses);
-		console.log();
-
+				
 		className = `strike-${this.state.strikes}`
 
 		if(this.state.checkForWin){
@@ -143,8 +136,7 @@ reset(){
 
 			}
 		};
-
-
+	
 		return (
 			<div>
 				<div  className="hangman-sprites">
