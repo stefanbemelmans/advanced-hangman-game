@@ -16,10 +16,10 @@ class App extends Component {
 		};
 //I guess this is like local variables...or global in the scope of the component?
 // I just sort of did it this way to do it.
-		this.wordCpy = this.state.wordToGuess.split('');
+		// this.wordAr = this.state.wordToGuess.split('');
 		// this.dupes = this.state.dupes;
-		this.bad = this.state.bad;
-		this.strikes = this.state.strikes;
+		// this.bad = this.state.bad;
+		// this.strikes = this.state.strikes;
 		this.handleChange = this.handleChange.bind(this);
 		this.guess = this.guess.bind(this);
 		// this.checkWin = this.checkWin.bind(this);
@@ -31,12 +31,14 @@ class App extends Component {
 
 		let length = Array("hello".length).fill('_');
 		this.setState({
-				wordToGuess: "hello",
+				wordToGuess: "hello".split(''),
 				correctGuesses: length,
 				//dupes: this.state.wordToGuess.match(/(.+)(?=\1)/g)this is the dupefinder returns letter if it's more than 1
 			})
+		
 		console.log(this.state);
-		console.log(this.state.dupes);
+
+
 
 	}
 //need to work out how to limit text input... "max-length"?
@@ -50,11 +52,11 @@ class App extends Component {
 		}
 	}
 
-	// checkWin() {
-	// 	if(!this.state.correctGuesses.includes('_')){
-	// 		return true;
-	// 	}
-	// }
+// checkWin() {
+// 	if(!this.state.correctGuesses.includes('_')){
+// 		return true;
+// 	}
+// }
 
 
 // 	reset(){
@@ -72,31 +74,33 @@ class App extends Component {
 	guess(){
 		let letIdx;
 		let guess = this.state.guess;
-		let charArray = this.state.wordToGuess.split('');
-		let corrCopy = this.state.correctGuesses.slice();
-		// let strikes = this.state.strikes;
-		// let bad = this.state.bad.slice();
+		let charArray = this.state.wordToGuess;
+		let guessCopy = this.state.correctGuesses.slice();
+		let strikes = this.state.strikes;
+		let bad = this.state.bad.slice();
 
-		if(this.state.bad.includes(guess)){
+		if(this.state.bad.includes(this.guess)){
 			alert("You've guessed that already");
 		}
 		document.getElementById('input').value='';
 
 		if(charArray.includes(guess)){
 			letIdx = charArray.indexOf(guess);
-			corrCopy[letIdx] = guess;
+			guessCopy[letIdx] = guess;
 			charArray[letIdx] = "";
 			this.setState({
-				correctGuesses: corrCopy,
-				guess: ''
+				correctGuesses: guessCopy,
+				guess: '',
+				wordToGuess: charArray
 			})
 			console.log(charArray);
 			console.log(this.state.correctGuesses);
+			console.log(this.state.wordToGuess);
 		}
 		else{
 			this.strikes += 1;
 			if(this.strikes === 6){alert("You Lose!")};
-			this.bad.push(guess);
+			this.bad.push(this.guess);
 			this.setState({
 				bad: this.bad,
 				strikes: this.strikes,
@@ -108,7 +112,6 @@ class App extends Component {
 	render() {
 
 		console.log(this.state.wordToGuess);
-		console.log(this.state.correctGuesses.join('-'));
 		console.log(this.state.correctGuesses);
 		console.log(this.charArray);
 		// if(this.checkWin()){
