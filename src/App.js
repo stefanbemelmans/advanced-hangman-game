@@ -105,10 +105,6 @@ checkWin() {
 		}
 		else{
 			strikes += 1;
-<<<<<<< HEAD
-			if(strikes === 6){
-=======
->>>>>>> f3d8fedd867cda02a6c8721e8f7e524ecaaca24e
 			bad.push(guess);
 			this.setState({
 				bad: bad,
@@ -135,19 +131,12 @@ checkWin() {
 
 		if(this.state.checkForWin){
 			if(this.checkWin()){
-<<<<<<< HEAD
-				className =`gamewon`;
-			}
-			else if (this.state.strikes > 5) {
-				className = `gameover`
-=======
 				className ="gamewon";
 				guessed = "You Win!";
 			}
 			else if (this.state.strikes === 5) {
 				className ="gameover"
 				guessed ="You Lose!";
->>>>>>> f3d8fedd867cda02a6c8721e8f7e524ecaaca24e
 			}
 		};
 
