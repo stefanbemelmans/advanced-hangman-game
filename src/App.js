@@ -29,13 +29,14 @@ class App extends Component {
 	componentDidMount() {
 		const randomWord = 'hello';
 
-		let length = Array(randomWord.length).fill('_');
+		let length = Array("hello".length).fill('_');
 		this.setState({
 				wordToGuess: "hello",
 				correctGuesses: length,
 				//dupes: this.state.wordToGuess.match(/(.+)(?=\1)/g)this is the dupefinder returns letter if it's more than 1
 			})
 		console.log(this.state);
+		console.log(this.state.dupes);
 
 	}
 //need to work out how to limit text input... "max-length"?
