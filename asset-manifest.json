@@ -1,7 +1,8 @@
 {
-  "main.css": "static/css/main.7bc2a52a.css",
-  "main.css.map": "static/css/main.7bc2a52a.css.map",
-  "main.js": "static/js/main.ee91165f.js",
-  "main.js.map": "static/js/main.ee91165f.js.map",
+  "main.css": "static/css/main.53c71777.css",
+  "main.css.map": "static/css/main.53c71777.css.map",
+  "main.js": "static/js/main.81c201b8.js",
+  "main.js.map": "static/js/main.81c201b8.js.map",
+  "static\\media\\hangman-sprite.png": "static/media/hangman-sprite.6630e80d.png",
   "static\\media\\logo.svg": "static/media/logo.ee7cd8ed.svg"
 }
